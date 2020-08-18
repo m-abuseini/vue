@@ -1,5 +1,5 @@
-<template>
-  <div class="overview">
+<template >
+  <div class="overview" v-if="!loading">
     <h4>
       {{elementData.title}} 
       <span>
@@ -16,13 +16,24 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import { mapState } from 'vuex';
 
-@Component
+@Component({
+  computed: mapState(['currentPriority'])
+})
 export default class Overview extends Vue {
   @Prop() private msg!: string;
   @Prop() private data: any;
   @Prop() private elementData: any;
+  public loading = true;
+  @Watch('currentPriority') 
+    onCurrentPriorityChanged(current: number, old: number) {
+        if (this.elementData.priority === current) {
+            this.loading = false;
+            this.$store.dispatch('componentLoaded');
+        }
+    }
 }
 </script>
 

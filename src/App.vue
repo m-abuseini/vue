@@ -4,6 +4,8 @@
     <section class="grid-container">
       <header class="header"></header>
       <main v-if="elements" v-bind="options" class="main">
+        {{$store.getters.getCurrentPriority}}
+        <!-- <button @click="updatePriority($store.getters.getCurrentPriority)"> update priority</button> -->
         <HelloWorld msg="Yousef Sawalha"/>
         <!-- :style="{width: ele.width + 'px', height: ele.height + 'px'}" -->
         <div class="content" v-for="ele in elements" v-bind:key="ele.id"  :class="ele.size" :order="ele.order">
@@ -32,6 +34,7 @@ import RadarChart from './components/RadarChart.vue';
 import BubbleChart from './components/BubbleChart.vue';
 import Overview from './components/Overview.vue';
 import config from './conf/conf.json';
+import { mapState } from 'vuex';
 
 @Component({
   components: {
@@ -41,7 +44,7 @@ import config from './conf/conf.json';
     LineChart,
     RadarChart,
     BubbleChart,
-    Overview
+    Overview,
   },
 })
 export default class App extends Vue {
@@ -49,10 +52,26 @@ export default class App extends Vue {
   private options = {
     itemClassName: 'content',
     itemMargin: 10,
+  };
+  // public priority = 0;
+
+  // get prioritiesCount() {
+  //   this.priority = this.$store.getters.getPrioritiesCount;
+  //   return this.priority;
+  // }
+
+  created() {
+    // call to create the priority object directly after creating the app component.
+    // this.$store.dispatch('createPriorityObject', this.elements);
   }
 
   mounted() {
     this.elements.sort((a: any, b: any) => {return a.order - b.order});
+    this.$store.dispatch('createPriorityObject', this.elements);
+  }
+
+  updatePriority(num: number) {
+    this.$store.dispatch('updateCurrentPriority', num + 1);
   }
 
 }
