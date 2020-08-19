@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/vue/precache-manifest.5e8b6e995f0878d1a039dbf4d53a41e4.js"
+  "/vue/precache-manifest.7501bd42e219acb77d1740655b34c0ad.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "dynamic-dashboard"});
