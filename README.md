@@ -30,4 +30,3 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 - Order: Number the order of each element (any elements that contains the same order will be placed next to each other).
 - Data / DataSource: data place holder / API (the inline data have a higher priority than the data source).
 - Id: each elements ID.
-- 
