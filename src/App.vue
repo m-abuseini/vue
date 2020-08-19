@@ -4,12 +4,8 @@
     <section class="grid-container">
       <header class="header"></header>
       <main v-if="elements" v-bind="options" class="main">
-        {{$store.getters.getCurrentPriority}}
-        <!-- <button @click="updatePriority($store.getters.getCurrentPriority)"> update priority</button> -->
         <HelloWorld msg="Yousef Sawalha"/>
-        <!-- :style="{width: ele.width + 'px', height: ele.height + 'px'}" -->
         <div class="content" v-for="ele in elements" v-bind:key="ele.id"  :class="ele.size" :order="ele.order">
-          <!-- :width="ele.width" :height="ele.height" -->
           <BarChart v-if="ele.type === 'bar'" :chartData="ele.data ? ele.data : ele.dataSource" :elementData="ele" ></BarChart>
           <PieChart v-if="ele.type === 'pie'" :chartData="ele.data ? ele.data : ele.dataSource" :elementData="ele"></PieChart>
           <LineChart v-if="ele.type === 'line'" :chartData="ele.data ? ele.data : ele.dataSource" :elementData="ele"></LineChart>
