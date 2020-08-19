@@ -33,7 +33,7 @@ export default new Vuex.Store({
       const obj: any = {};
       // out object key is the priority
       // object key . count is the elements count for each priority
-      elementsObj.forEach(element => {
+      elementsObj.forEach((element: any) => {
         if (obj[element.priority] && obj[element.priority].count) {
           obj[element.priority].count = obj[element.priority].count + 1;
         } else {
